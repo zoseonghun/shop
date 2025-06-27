@@ -9,9 +9,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -22,12 +19,18 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http
-                .csrf(csrf -> csrf
-                        .csrfTokenRepository(new CookieCsrfTokenRepository())   // csrf 토큰 저장소를 http only cookie로 설정
+        http
+                .formLogin(form -> form
+                        .loginPage("/members/login")
+                        .defaultSuccessUrl("/")
+                        .usernameParameter("email")
+                        .failureUrl("/members/login/error")
                 )
-                .build()
-                ;
+                .logout(logout -> logout
+                        .logoutUrl("/members/logout") // 여기만 바뀜!
+                        .logoutSuccessUrl("/")
+                );
+        return http.build();
     }
 
     @Bean
