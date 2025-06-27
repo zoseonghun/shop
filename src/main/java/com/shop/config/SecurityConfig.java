@@ -19,7 +19,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
+        return http
                 .formLogin(form -> form
                         .loginPage("/members/login")
                         .defaultSuccessUrl("/")
@@ -29,8 +29,15 @@ public class SecurityConfig {
                 .logout(logout -> logout
                         .logoutUrl("/members/logout") // 여기만 바뀜!
                         .logoutSuccessUrl("/")
-                );
-        return http.build();
+                )
+                .authorizeHttpRequests(authorizeHttpRequestsCustomizer -> authorizeHttpRequestsCustomizer
+                .requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
+                .requestMatchers("/", "/members/**", "/item/**", "/images/**").permitAll()
+                .requestMatchers("/admin/**").hasRole("ADMIN")
+                .anyRequest()
+                .authenticated())
+                .build();
+
     }
 
     @Bean
