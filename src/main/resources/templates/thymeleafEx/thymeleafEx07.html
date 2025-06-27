@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<p th:text="${data}">Hello Thymeleaf!!</p>
-</body>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout=http://www.ultraq.net.nz/thymeleaf/layout
+      layout:decorate="~{layouts/layout1}">
+
+<div layout:fragment="content">
+    본문 영역 입니다.
+</div>
+
 </html>

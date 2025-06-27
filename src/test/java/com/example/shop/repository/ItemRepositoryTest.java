@@ -2,7 +2,7 @@ package com.example.shop.repository;
 
 import com.shop.constant.ItemSellStatus;
 import com.shop.entity.Item;
-import com.example.shop.entity.QItem;
+import com.shop.entity.QItem;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
