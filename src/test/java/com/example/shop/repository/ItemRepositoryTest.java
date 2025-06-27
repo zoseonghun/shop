@@ -1,11 +1,12 @@
 package com.example.shop.repository;
 
-import com.example.shop.constant.ItemSellStatus;
-import com.example.shop.entity.Item;
+import com.shop.constant.ItemSellStatus;
+import com.shop.entity.Item;
 import com.example.shop.entity.QItem;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.shop.repository.ItemRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.junit.jupiter.api.DisplayName;
@@ -21,7 +22,6 @@ import org.thymeleaf.util.StringUtils;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @TestPropertySource(locations="classpath:application-test.yml")
 class ItemRepositoryTest {
