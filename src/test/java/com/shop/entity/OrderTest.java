@@ -103,6 +103,7 @@ class OrderTest {
     @Test
     @DisplayName("고아객체 제거 테스트")
     public void orphanRemovalTest(){
+
         Order order = this.createOrder();
         order.getOrderItems().remove(0);
         em.flush();
@@ -111,15 +112,20 @@ class OrderTest {
 
     @Test
     @DisplayName("지연 로딩 테스트")
-    public void lazyLoadingTest() {
+    public void lazyLoadingTest(){
 
         Order order = this.createOrder();
         Long orderItemId = order.getOrderItems().get(0).getId();
         em.flush();
         em.clear();
 
-        OrderItem orderItem = orderItemRepository.findById(orderItemId).orElseThrow(EntityNotFoundException::new);
+        OrderItem orderItem = orderItemRepository.findById(orderItemId)
+                .orElseThrow(EntityNotFoundException::new);
         System.out.println("Order class : " + orderItem.getOrder().getClass());
-
+        System.out.println("===========================");
+        orderItem.getOrder().getOrderDate();
+        System.out.println("===========================");
     }
+
+
 }

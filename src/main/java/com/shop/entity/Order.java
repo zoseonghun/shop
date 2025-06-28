@@ -23,7 +23,7 @@ public class Order {
     private Member member;
 
     // 주문일
-    private LocalDateTime orderData;
+    private LocalDateTime orderDate;
 
     // 주문상태
     @Enumerated(EnumType.STRING)
