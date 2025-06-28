@@ -28,8 +28,4 @@ public class OrderItem {
     // 수량
     private int count;
 
-    private LocalDateTime regTime;
-
-    private  LocalDateTime updateTime;
-
 }
