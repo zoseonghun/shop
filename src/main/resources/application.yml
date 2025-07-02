@@ -1,6 +1,9 @@
 server:
   port: 80
 
+tomcat:
+  max-part-count: 30
+
 spring:
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
