@@ -11,7 +11,7 @@ public class ItemSearchDto {
     private String searchDateType;
 
     // 상품의 판매상태를 기준으로 상품 데이터를 조회
-    private ItemSellStatus itemSellStatus;
+    private ItemSellStatus searchSellStatus;
 
     // 상품을 조회할 때 어떤 유형으로 조회할지 선택(itemNm : 상품명, createdBy : 상품 등록자 아이디)
     private String searchBy;
