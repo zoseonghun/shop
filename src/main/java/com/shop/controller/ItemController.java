@@ -1,6 +1,11 @@
 package com.shop.controller;
 
+import com.shop.dto.ItemSearchDto;
+import com.shop.entity.Item;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -15,7 +20,9 @@ import jakarta.validation.Valid;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
 import java.util.List;
+import java.util.Optional;
 
 
 @Controller
@@ -94,55 +101,25 @@ public class ItemController {
 
     }
 
-//    @PostMapping(value = "/admin/item/{itemId}")
-//    public String itemUpdate(@Valid ItemFormDto itemFormDto, BindingResult bindingResult,
-//                             @RequestParam("itemImgFile") List<MultipartFile> itemImgFileList,
-//                             Model model) {
-//
-//        System.out.println("==================== itemUpdate 시작 ====================");
-//        System.out.println("itemId: " + itemFormDto.getId());
-//        System.out.println("itemNm: " + itemFormDto.getItemNm());
-//        System.out.println("itemImgIds: " + itemFormDto.getItemImgIds());
-//        System.out.println("itemImgFileList size: " + itemImgFileList.size());
-//
-//        for (int i = 0; i < itemImgFileList.size(); i++) {
-//            MultipartFile file = itemImgFileList.get(i);
-//            System.out.println("파일 " + i + ": " + file.getOriginalFilename() + " (empty: " + file.isEmpty() + ")");
-//        }
-//
-//        if(bindingResult.hasErrors()) {
-//            System.out.println("Validation 에러 발생");
-//            bindingResult.getAllErrors().forEach(error -> {
-//                System.out.println("  - " + error.getDefaultMessage());
-//            });
-//            return "item/itemForm";
-//        }
-//
-//        if (itemImgFileList.get(0).isEmpty() && itemFormDto.getId() == null) {
-//            System.out.println("첫번째 이미지 필수 에러");
-//            model.addAttribute("errorMessage", "첫번째 상품 이미지는 필수 입력 값 입니다.");
-//            return "item/itemForm";
-//        }
-//
-//        try {
-//            System.out.println("updateItem 호출 전");
-//            itemService.updateItem(itemFormDto, itemImgFileList);
-//            System.out.println("updateItem 호출 성공");
-//        } catch (Exception e) {
-//            System.out.println("==================== 에러 발생 ====================");
-//            System.out.println("에러 타입: " + e.getClass().getName());
-//            System.out.println("에러 메시지: " + e.getMessage());
-//            e.printStackTrace();
-//            System.out.println("===================================================");
-//
-//            model.addAttribute("errorMessage", "상품 수정 중 에러가 발생하였습니다: " + e.getMessage());
-//            model.addAttribute("itemFormDto", itemFormDto);
-//            return "item/itemForm";
-//        }
-//
-//        System.out.println("==================== itemUpdate 완료 ====================");
-//        return "redirect:/";
-//    }
+    // value에 상품 관리 화면 진입 시 URL에 페이지 번호가 없는 경우, 있는 경우 2가지 매핑
+    @GetMapping(value = {"/admin/items", "/admin/items/{page}"})
+    public String itemManage(ItemSearchDto itemSearchDto, @PathVariable("page") Optional<Integer> page, Model model) {
+
+        // 첫 번째 파라미터로 조회 : 페이지 번호, 두 번째 파라미터 : 한 번에 가지고 올 데이터 수, 페이지 번호가 있으면 해당 페이지 조회, 없으면 0페이지 조회
+        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 3);
+        // 조회 조건과 페이징 정보를 파라미터로 넘겨서 Page(Item) 객체를 반환받음
+        Page <Item> items = itemService.getAdminItemPage(itemSearchDto, pageable);
+        // 조회한 상품 데이터 및 페이징 정보를 뷰에 전달
+        model.addAttribute("items", items);
+        // 페이지 전환 시 기존 검색 조건을 유지한 채 이동할 수 있도록 뷰에 다시 전달
+        model.addAttribute("itemSearchDto", itemSearchDto);
+        // 상품 관리 메뉴 하단에 보여줄 페이지 번호의 최대 개수
+        model.addAttribute("maxPage", 5);
+        return "item/itemMng";
+
+    }
+
+
 
 
 }
