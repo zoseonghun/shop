@@ -43,4 +43,7 @@ logging:
             sql: trace
 
 itemImgLocation: /Users/seonghun/Desktop/shop/item
-uploadPath: file:///Users/seonghun/Desktop/images
+uploadPath: file:///Users/seonghun/Desktop/shop/item/
+
+
+
