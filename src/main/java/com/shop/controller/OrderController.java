@@ -50,6 +50,7 @@ public class OrderController {
             return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
 
+        // 결과값으로 생성된 주문 번호와 요청이 성공했다는 HTTP 응답 상태 코드를 반환
         return new ResponseEntity<Long>(orderId, HttpStatus.OK);
 
     }
