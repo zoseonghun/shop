@@ -28,6 +28,51 @@
             $("#totalPrice").html(totalPrice + "원");
         }
 
+        function order() {
+
+            // 스프링 시큐리티 사용 시 기본적으로 POST 방삭의 데이터 전송에는 CSRF 토큰 값이 필요하므로 해당값들을 조회
+            var token = $("meta[name='_csrf']").attr("content");
+            var header = $("meta[name='_csrf_header']").attr("content");
+
+            var url = "/order";
+            // 주문할 상품의 아이디와 주문 수량 데이터를 전달할 객체를 생성
+            var paramData = {
+                itemId: $("#itemId").val(),
+                count: $("#count").val()
+            };
+
+            // 서버에 보낼 주문 데이터를 json으로 변경
+            var param = JSON.stringify(paramData);
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                contentType: "application/json",
+                data: param,
+                beforeSend: function (xhr) {
+                    /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+                    xhr.setRequestHeader(header, token);
+                },
+                // 서버에서 결과값으로 받을 테이터의 타입을 json으로 설정
+                dataType: "json",
+                cache: false,
+                success: function (result, status) {
+                    alert("주문이 완료 되었습니다.");
+                    location.href='/';
+                },
+                error: function (jqXHR, status, error) {
+
+                    if (jqXHR.status == '401') {
+                        alert("로그인 후 이용해주세요");
+                        location.href = '/members/login';
+                    } else  {
+                        alert(jqXHR.responseText);
+                    }
+
+                }
+            })
+        }
+
     </script>
 </th:block>
 
