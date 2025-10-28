@@ -62,9 +62,11 @@
                 },
                 error: function (jqXHR, status, error) {
 
+                    // 현재 로그인 상ㅌ애가 아니라면 "로그인 후 이용해주세요"라는 메시지를 보여주고 로그인 페이지 이동
                     if (jqXHR.status == '401') {
                         alert("로그인 후 이용해주세요");
                         location.href = '/members/login';
+                    // 주문 시 에러가 발생하면 해당 메세지를 보여줌
                     } else  {
                         alert(jqXHR.responseText);
                     }
