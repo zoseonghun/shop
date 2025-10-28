@@ -9,12 +9,14 @@ import com.shop.repository.ItemRepository;
 import com.shop.repository.MemberRepository;
 import com.shop.repository.OrderRepository;
 import jakarta.persistence.EntityExistsException;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.thymeleaf.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,20 +56,20 @@ public class OrderService {
     @Transactional(readOnly = true)
     public Page<OrderHistDto> getOrderList(String email, Pageable pageable) {
 
-        // 1. 유저의 아이디와 페이징 조건을 이용하여 주문 목록을 조회
+        // 유저의 아이디와 페이징 조건을 이용하여 주문 목록을 조회
         List<Order> orders = orderRepository.findOrders(email, pageable);
 
-        // 2. 유저의 주문 총 개수를 구함
+        // 유저의 주문 총 개수를 구함
         Long totalCount = orderRepository.countOrder(email);
 
         List<OrderHistDto> orderHistDtos = new ArrayList<>();
 
-        // 3. 주문 리스트를 순회하면서 구매 이력 페이지에 전달할 DTO 생성
+        // 주문 리스트를 순회하면서 구매 이력 페이지에 전달할 DTO 생성
         for (Order order : orders) {
             OrderHistDto orderHistDto = new OrderHistDto(order);
             List<OrderItem> orderItems = order.getOrderItems();
             for (OrderItem orderItem : orderItems) {
-                // 4. 주문한 상품의 대표 이미지를 조회
+                // 주문한 상품의 대표 이미지를 조회
                 ItemImg itemImg = itemImgRepository.findByItemIdAndRepimgYn(orderItem.getItem().getId(), "Y");
                 OrderItemDto orderItemDto = new OrderItemDto(orderItem, itemImg.getImgUrl());
                 orderHistDto.addOrderItemDto(orderItemDto);
@@ -75,9 +77,32 @@ public class OrderService {
             orderHistDtos.add(orderHistDto);
         }
 
-        // 5. 페이지 구현 객체를 생성하여 반환
+        // 페이지 구현 객체를 생성하여 반환
         return new PageImpl<OrderHistDto>(orderHistDtos, pageable, totalCount);
 
     }
+
+    @Transactional(readOnly = true)
+    // 현재 로그인한 사용자와 주문 데이터를 생성한 사용자가 같은지 검사(같을때 : true, 다를때 : false 반환)
+    public boolean validateOrder(Long orderId, String email) {
+        Member curMember = memberRepository.findByEmail(email);
+        Order order = orderRepository.findById(orderId).orElseThrow(EntityNotFoundException::new);
+        Member savedMember = order.getMember();
+
+        if (!StringUtils.equals(curMember.getEmail(), savedMember.getEmail())) {
+            return false;
+        }
+
+        return true;
+
+    }
+
+    public void cancelOrder(Long orderId) {
+        Order order = orderRepository.findById(orderId).orElseThrow(EntityNotFoundException::new);
+        // 주문 취소 상태로 변경하면 변경 감지 기능에 의해 트랜잭션이 끝날 때 update 쿼리가 실행
+        order.cancelOrder();
+    }
+
+
 
 }
