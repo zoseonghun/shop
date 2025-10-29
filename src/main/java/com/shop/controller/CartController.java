@@ -82,4 +82,19 @@ public class CartController {
 
     }
 
+    // HTTP 메서드에서 DELETE는 요청된 자원을 삭제할 떄 사용, 장바구니 상품을 삭제하기 떄문에 DeleteMapping 사용
+    @DeleteMapping(value = "/cartItem/{cartItemId}")
+    public @ResponseBody ResponseEntity deleteCartItem(@PathVariable("cartItemId") Long cartItemId, Principal principal) {
+
+        // 수정 권한을 체크
+        if (!cartService.validateCartItem(cartItemId, principal.getName())) {
+            return new ResponseEntity<String>("수정 권한이 없습니다.",  HttpStatus.FORBIDDEN);
+        }
+
+        // 해당 장바구니 상품을 삭제
+        cartService.deleteCartItem(cartItemId);
+        return new ResponseEntity<Long>(cartItemId, HttpStatus.OK);
+
+    }
+
 }
