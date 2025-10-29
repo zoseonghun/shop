@@ -22,7 +22,6 @@
 
         // 총 주문 금액을 구하는 함수
         function getOrderTotalPrice(){
-
             var orderTotalPrice = 0;
             // 현재 체크된 장바구니 상품들의 가격과 수량을 곱해서 총 주문 금액을 계산
             $("input[name=cartChkBox]:checked").each(function() {
@@ -37,13 +36,13 @@
 
         // 장바구니에 들어있는 상품의 수량을 변경 시 상품의 가겨과 상품의 수량을 곱해서 상품 금액을 변경해줌
         // 변경된 총 주문 금액을 계산하기 위해서 마지막에 getOrderTotalPrice()함수를 호출
-        function changeCount(obj) {
+        function changeCount(obj){
 
             var count = obj.value;
             var cartItemId = obj.id.split('_')[1];
             var price = $("#price_" + cartItemId).data("price");
-            var totalPrice = count * price;
-            $("#totalPrice_" + cartItemId).html(totalPrice + "원");
+            var totalPrice = count*price;
+            $("#totalPrice_" + cartItemId).html(totalPrice+"원");
             getOrderTotalPrice();
             updateCartItemCount(cartItemId, count);
 
@@ -51,48 +50,47 @@
 
         // 장바구니에 들어있는 전체 상품을 체크하거나 체크 해제하는 함수
         // 변경된 총 주문 금액을 계산하기 위해서 마지막에 getOrderTotalPrice() 함수를 호출
-        function checkAll() {
+        function checkAll(){
 
-            if ($("#checkall").prop("checked")) {
-                $("#input[name=cartChkBox]").prop("checked", true);
-            } else {
-                $("#input[name=cartChkBox]").prop("checked", false);
+            if($("#checkall").prop("checked")){
+                $("input[name=cartChkBox]").prop("checked",true);
+            }else{
+                $("input[name=cartChkBox]").prop("checked",false);
             }
             getOrderTotalPrice();
 
         }
 
-        function updateCartItemCount(cartItemId, count) {
-            var token = $("#meta[name='_csrf']").attr("content");
-            var header = $("#meta[name='_csrf_header']").attr("content");
+        function updateCartItemCount(cartItemId, count){
+            var token = $("meta[name='_csrf']").attr("content");
+            var header = $("meta[name='_csrf_header']").attr("content");
 
-            var url = "/cartItem/" + cartItemId +"?count=" +count;
+            var url = "/cartItem/" + cartItemId+"?count=" + count;
 
             // 부분 업데이트이므로 PATCH TYPE로 설정
             $.ajax({
-                url: url,
-                type: "PATCH",
-                beforeSend: function(xhr){
+                url      : url,
+                type     : "PATCH",
+                beforeSend : function(xhr){
                     /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
                     xhr.setRequestHeader(header, token);
                 },
-                dataType: "json",
-                cache: false,
-                success: function(result, status){
+                dataType : "json",
+                cache   : false,
+                success  : function(result, status){
                     console.log("cartItem count update success");
                 },
-                error: function(jqXHR, status, error) {
+                error : function(jqXHR, status, error){
 
-                    if (jqXHR.status === '401') {
-                        alert("로그인 후 이용해주세요");
-                        location.href = '/members/login';
-                    } else {
-                        alert(jqXHR.responseText);
+                    if(jqXHR.status == '401'){
+                        alert('로그인 후 이용해주세요');
+                        location.href='/members/login';
+                    } else{
+                        alert(jqXHR.responseJSON.message);
                     }
 
                 }
             });
-
         }
 
     </script>
