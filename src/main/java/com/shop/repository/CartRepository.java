@@ -6,4 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface CartRepository extends JpaRepository<Cart,Long> {
 
+    Cart findByMemberId(Long memberId);
+
 }
