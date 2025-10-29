@@ -101,4 +101,11 @@ public class CartService {
 
     }
 
+    public void deleteCartItem(Long cartItemId) {
+
+        CartItem cartItem = cartItemRepository.findById(cartItemId).orElseThrow(EntityNotFoundException::new);
+        cartItemRepository.delete(cartItem);
+
+    }
+
 }
