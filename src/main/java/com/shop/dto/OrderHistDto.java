@@ -27,9 +27,9 @@ public class OrderHistDto {
     // order 객체를 파라미터로 받아서 멤버 변수 값을 세팅(주문 날짜의 경우 "yyyy-MM-dd HH:mm" 형태로 포맷 수정)
     public OrderHistDto(Order order) {
 
-        this.orderId = orderId;
+        this.orderId = order.getId();
         this.orderDate = order.getOrderDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-        this.orderStatus = orderStatus;
+        this.orderStatus = order.getOrderStatus();
 
     }
 

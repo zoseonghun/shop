@@ -61,13 +61,14 @@ public class OrderController {
     }
 
     @GetMapping(value = {"/orders", "/orders/{page}"})
-    public String orderHist(@PathVariable("page") Optional<Integer> page, Principal principal, Model model) {
+    public String orderHist(@PathVariable("page") Optional<Integer> page, Principal principal, Model model){
 
         // 1. 한 번에 가지고 올 주문의 개수 4개로 설정
         Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 4);
 
         // 2. 현재 로그인한 회원은 이메일과 페이징 객체를 파라미터로 전달하여 화면에 전달한 주문 목록 데이터를 리턴 값으로 받음
         Page<OrderHistDto> ordersHistDtoList = orderService.getOrderList(principal.getName(), pageable);
+
         model.addAttribute("orders", ordersHistDtoList);
         model.addAttribute("page", pageable.getPageNumber());
         model.addAttribute("maxPage", 5);
@@ -77,11 +78,11 @@ public class OrderController {
     }
 
     @PostMapping("/order/{orderId}/cancel")
-    public @ResponseBody ResponseEntity cancelOrder(@PathVariable("orderId") Long orderId, Principal principal) {
+    public @ResponseBody ResponseEntity cancelOrder(@PathVariable("orderId") Long orderId , Principal principal){
 
         // 다른 사람의 주문을 취소하지 못하도록 주문 취소 권한을 검사
-        if (!orderService.validateOrder(orderId, principal.getName())) {
-            return new ResponseEntity<String>("주문 취소 권한이 없습니다.", HttpStatus.BAD_REQUEST);
+        if(!orderService.validateOrder(orderId, principal.getName())){
+            return new ResponseEntity<String>("주문 취소 권한이 없습니다.", HttpStatus.FORBIDDEN);
         }
 
         // 주문 취소 로직 호출
