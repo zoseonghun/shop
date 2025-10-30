@@ -56,14 +56,15 @@
 - member, item, cart, order 등 주요 테이블로 구성
 - 각 테이블은 PK 및 필요한 컬럼들로 구성되어 있음
 
-  테이블명    |  컬럼명        |  데이터 타입        |  제약 조건                      |  설명               
---------+-------------+----------------+-----------------------------+-------------------
-member  |  member_id  |  BIGINT        |  PK, AUTO_INCREMENT         |  회원 고유 ID         
-        |  email      |  VARCHAR(100)  |  UNIQUE, NOT NULL           |  회원 이메일           
-        |  password   |  VARCHAR(255)  |  NOT NULL                   |  비밀번호             
-        |  name       |  VARCHAR(100)  |  NOT NULL                   |  회원 이름            
-        |  role       |  VARCHAR(50)   |  NOT NULL                   |  권한 (예: ROLE_USER)
-        |  reg_time   |  TIMESTAMP     |  DEFAULT CURRENT_TIMESTAMP  |  가입일시
+| 테이블명 | 컬럼명 | 데이터 타입 | 제약 조건 | 설명 |
+|---|---|---|---|---|
+| member | member_id | BIGINT | PK, AUTO_INCREMENT | 회원 고유 ID |
+|  | email | VARCHAR(100) | UNIQUE, NOT NULL | 회원 이메일 |
+|  | password | VARCHAR(255) | NOT NULL | 비밀번호 |
+|  | name | VARCHAR(100) | NOT NULL | 회원 이름 |
+|  | role | VARCHAR(50) | NOT NULL | 권한 |
+|  | reg_time | TIMESTAMP | DEFAULT CURRENT_TIMESTAMP | 가입일시 |
+
 
   테이블명  |  컬럼명          |  데이터 타입        |  제약 조건               |  설명      
 ------+---------------+----------------+----------------------+----------
