@@ -117,6 +117,37 @@ order_item  |  order_item_id  |  BIGINT  |  PK, AUTO_INCREMENT    |  주문 상�
 | item_detail | TEXT          |                          | 상품 상세 설명       |
 | price       | INT           | NOT NULL                 | 가격                 |
 | stock       | INT           | NOT NULL                 | 재고 수량            |
+
+| 컬럼명       | 데이터 타입    | 제약 조건              | 설명                   |
+|--------------|---------------|----------------------|------------------------|
+| cart_id      | BIGINT        | PK, AUTO_INCREMENT   | 장바구니 고유 ID       |
+| member_id    | BIGINT        | FK(member.member_id) | 소유 회원 ID           |
+| created_date | TIMESTAMP     | DEFAULT CURRENT_TIMESTAMP | 생성일시           |
+
+| 컬럼명       | 데이터 타입    | 제약 조건            | 설명                  |
+|--------------|---------------|--------------------|-----------------------|
+| cart_item_id | BIGINT        | PK, AUTO_INCREMENT | 장바구니 항목 고유 ID |
+| cart_id      | BIGINT        | FK(cart.cart_id)   | 장바구니 ID           |
+| item_id      | BIGINT        | FK(item.item_id)   | 상품 ID               |
+| count        | INT           | NOT NULL           | 수량                  |
+
+# orders 테이블
+## orders 테이블
+### orders 테이블
+| 컬럼명     | 데이터 타입    | 제약 조건              | 설명               |
+|------------|---------------|----------------------|--------------------|
+| order_id   | BIGINT        | PK, AUTO_INCREMENT   | 주문 고유 ID       |
+| member_id  | BIGINT        | FK(member.member_id) | 주문 회원 ID       |
+| order_date | TIMESTAMP     | DEFAULT CURRENT_TIMESTAMP | 주문일시       |
+| status     | VARCHAR(50)   | NOT NULL             | 주문 상태          |
+
+| 컬럼명      | 데이터 타입    | 제약 조건            | 설명                  |
+|-------------|---------------|--------------------|-----------------------|
+| order_item_id | BIGINT        | PK, AUTO_INCREMENT | 주문 상세 항목 고유 ID |
+| order_id    | BIGINT        | FK(orders.order_id)| 주문 ID               |
+| item_id     | BIGINT        | FK(item.item_id)   | 상품 ID               |
+| quantity   | INT           | NOT NULL           | 수량                  |
+
   
 
 #### API 설계
