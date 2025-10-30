@@ -114,45 +114,45 @@
   
 
 #### API 설계
-HTTP Method  |  Endpoint                   |  예상 역할          
--------------+-----------------------------+-----------------
-POST         |  /members/signup            |  회원가입           
-POST         |  /members/login             |  로그인            
-POST         |  /members/logout            |  로그아웃           
-GET          |  /members/me                |  현재 로그인 회원 정보 조회
-GET          |  /items                     |  전체 상품 목록 조회    
-GET          |  /items/{id}                |  특정 상품 상세 조회    
-POST         |  /items                     |  상품 등록 (관리자용)   
-PUT          |  /items/{id}                |  상품 수정 (관리자용)   
-DELETE       |  /items/{id}                |  상품 삭제 (관리자용)   
-POST         |  /cart/add                  |  장바구니에 상품 추가    
-PUT          |  /cart/update/{cartItemId}  |  장바구니 수량 변경     
-DELETE       |  /cart/delete/{cartItemId}  |  장바구니 상품 삭제     
-GET          |  /cart                      |  장바구니 전체 목록 조회  
-POST         |  /orders/create             |  주문 생성          
-GET          |  /orders/{orderId}          |  주문 상세 조회       
-GET          |  /orders                    |  주문 내역 전체 조회    
+| HTTP Method | Endpoint               | 예상 역할                   |
+|-------------|------------------------|----------------------------|
+| POST        | /members/signup        | 회원가입                   |
+| POST        | /members/login         | 로그인                     |
+| POST        | /members/logout        | 로그아웃                   |
+| GET         | /members/me            | 현재 로그인 회원 정보 조회  |
+| GET         | /items                 | 전체 상품 목록 조회         |
+| GET         | /items/{id}            | 특정 상품 상세 조회        |
+| POST        | /items                 | 상품 등록 (관리자용)        |
+| PUT         | /items/{id}            | 상품 수정 (관리자용)        |
+| DELETE      | /items/{id}            | 상품 삭제 (관리자용)        |
+| POST        | /cart/add              | 장바구니에 상품 추가        |
+| PUT         | /cart/update/{cartItemId} | 장바구니 수량 변경       |
+| DELETE      | /cart/delete/{cartItemId} | 장바구니 상품 삭제       |
+| GET         | /cart                  | 장바구니 전체 목록 조회     |
+| POST        | /orders/create         | 주문 생성                   |
+| GET         | /orders/{orderId}      | 주문 상세 조회              |
+| GET         | /orders                | 주문 내역 전체 조회         |
 
 
 #### API 명세서
-Method  |  Endpoint                   |  설명           
---------+-----------------------------+---------------
-POST    |  /members/signup            |  신규 회원 가입     
-POST    |  /members/login             |  회원 로그인       
-POST    |  /members/logout            |  회원 로그아웃      
-GET     |  /members/me                |  로그인한 회원 정보 조회
-GET     |  /items                     |  상품 전체 리스트 조회 
-GET     |  /items/{id}                |  상품 상세 조회     
-POST    |  /items                     |  상품 추가 (관리자용) 
-PUT     |  /items/{id}                |  상품 수정 (관리자용) 
-DELETE  |  /items/{id}                |  상품 삭제 (관리자용) 
-POST    |  /cart/add                  |  장바구니 상품 추가   
-PUT     |  /cart/update/{cartItemId}  |  장바구니 수량 변경   
-DELETE  |  /cart/delete/{cartItemId}  |  장바구니 상품 삭제   
-GET     |  /cart                      |  장바구니 목록 조회   
-POST    |  /orders/create             |  주문 생성        
-GET     |  /orders/{orderId}          |  주문 상세 조회     
-GET     |  /orders                    |  주문 내역 조회     
+| Method | Endpoint                | 설명                       |
+|--------|-------------------------|----------------------------|
+| POST   | /members/signup         | 신규 회원 가입             |
+| POST   | /members/login          | 회원 로그인                |
+| POST   | /members/logout         | 회원 로그아웃              |
+| GET    | /members/me             | 로그인한 회원 정보 조회     |
+| GET    | /items                  | 상품 전체 리스트 조회       |
+| GET    | /items/{id}             | 상품 상세 조회             |
+| POST   | /items                  | 상품 추가 (관리자용)       |
+| PUT    | /items/{id}             | 상품 수정 (관리자용)       |
+| DELETE | /items/{id}             | 상품 삭제 (관리자용)       |
+| POST   | /cart/add               | 장바구니 상품 추가         |
+| PUT    | /cart/update/{cartItemId} | 장바구니 수량 변경       |
+| DELETE | /cart/delete/{cartItemId} | 장바구니 상품 삭제       |
+| GET    | /cart                   | 장바구니 목록 조회         |
+| POST   | /orders/create          | 주문 생성                  |
+| GET    | /orders/{orderId}       | 주문 상세 조회             |
+| GET    | /orders                 | 주문 내역 조회             |
 
 ---
 
