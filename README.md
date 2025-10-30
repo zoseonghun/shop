@@ -28,7 +28,6 @@
 - Spring Security 적용 및 CSRF 보안 설정
 - 프로젝트 빌드, 배포, 디버깅 작업
 
-
 ---
 
 ## 2. 프로젝트 구성
@@ -56,51 +55,8 @@
 - member, item, cart, order 등 주요 테이블로 구성
 - 각 테이블은 PK 및 필요한 컬럼들로 구성되어 있음
 
-| 테이블명 | 컬럼명 | 데이터 타입 | 제약 조건 | 설명 |
-|---|---|---|---|---|
-| member | member_id | BIGINT | PK, AUTO_INCREMENT | 회원 고유 ID |
-|  | email | VARCHAR(100) | UNIQUE, NOT NULL | 회원 이메일 |
-|  | password | VARCHAR(255) | NOT NULL | 비밀번호 |
-|  | name | VARCHAR(100) | NOT NULL | 회원 이름 |
-|  | role | VARCHAR(50) | NOT NULL | 권한 |
-|  | reg_time | TIMESTAMP | DEFAULT CURRENT_TIMESTAMP | 가입일시 |
 
-
-  테이블명  |  컬럼명          |  데이터 타입        |  제약 조건               |  설명      
-------+---------------+----------------+----------------------+----------
-item  |  item_id      |  BIGINT        |  PK, AUTO_INCREMENT  |  상품 고유 ID
-      |  item_name    |  VARCHAR(200)  |  NOT NULL            |  상품명     
-      |  item_detail  |  TEXT          |  -                   |  상품 상세 설명
-      |  price        |  INT           |  NOT NULL            |  가격      
-      |  stock        |  INT           |  NOT NULL            |  재고 수량
-
-테이블명  |  컬럼명           |  데이터 타입     |  제약 조건                      |  설명        
-------+----------------+-------------+-----------------------------+------------
-cart  |  cart_id       |  BIGINT     |  PK, AUTO_INCREMENT         |  장바구니 고유 ID
-      |  member_id     |  BIGINT     |  FK (member.member_id)      |  소유 회원 ID  
-      |  created_date  |  TIMESTAMP  |  DEFAULT CURRENT_TIMESTAMP  |  생성일시      
-
-      테이블명       |  컬럼명           |  데이터 타입  |  제약 조건               |  설명           
------------+----------------+----------+----------------------+---------------
-cart_item  |  cart_item_id  |  BIGINT  |  PK, AUTO_INCREMENT  |  장바구니 항목 고유 ID
-           |  cart_id       |  BIGINT  |  FK (cart.cart_id)   |  장바구니 ID      
-           |  item_id       |  BIGINT  |  FK (item.item_id)   |  상품 ID        
-           |  count         |  INT     |  NOT NULL            |  수량           
-
-           테이블명    |  컬럼명         |  데이터 타입       |  제약 조건                      |  설명       
---------+--------------+---------------+-----------------------------+-----------
-orders  |  order_id    |  BIGINT       |  PK, AUTO_INCREMENT         |  주문 고유 ID 
-        |  member_id   |  BIGINT       |  FK (member.member_id)      |  주문한 회원 ID
-        |  order_date  |  TIMESTAMP    |  DEFAULT CURRENT_TIMESTAMP  |  주문일시     
-        |  status      |  VARCHAR(50)  |  NOT NULL                   |  주문 상태    
-
-        테이블명        |  컬럼명            |  데이터 타입  |  제약 조건                 |  설명            
-------------+-----------------+----------+------------------------+----------------
-order_item  |  order_item_id  |  BIGINT  |  PK, AUTO_INCREMENT    |  주문 상세 항목 고유 ID
-            |  order_id       |  BIGINT  |  FK (orders.order_id)  |  주문 ID         
-            |  item_id        |  BIGINT  |  FK (item.item_id)     |  상품 ID         
-            |  quantity       |  INT     |  NOT NULL              |  수량            
-
+#### member 테이블
 | 컬럼명    | 데이터 타입    | 제약 조건                  | 설명                 |
 |-----------|---------------|--------------------------|----------------------|
 | member_id | BIGINT        | PK, AUTO_INCREMENT       | 회원 고유 ID         |
@@ -110,6 +66,8 @@ order_item  |  order_item_id  |  BIGINT  |  PK, AUTO_INCREMENT    |  주문 상�
 | role      | VARCHAR(50)   | NOT NULL                 | 권한 (ROLE_USER 등)  |
 | reg_time  | TIMESTAMP     | DEFAULT CURRENT_TIMESTAMP| 가입일시             |
 
+
+#### item 테이블
 | 컬럼명      | 데이터 타입    | 제약 조건                  | 설명                 |
 |-------------|---------------|--------------------------|----------------------|
 | item_id     | BIGINT        | PK, AUTO_INCREMENT       | 상품 고유 ID         |
@@ -118,12 +76,16 @@ order_item  |  order_item_id  |  BIGINT  |  PK, AUTO_INCREMENT    |  주문 상�
 | price       | INT           | NOT NULL                 | 가격                 |
 | stock       | INT           | NOT NULL                 | 재고 수량            |
 
+
+#### cart 테이블
 | 컬럼명       | 데이터 타입    | 제약 조건              | 설명                   |
 |--------------|---------------|----------------------|------------------------|
 | cart_id      | BIGINT        | PK, AUTO_INCREMENT   | 장바구니 고유 ID       |
 | member_id    | BIGINT        | FK(member.member_id) | 소유 회원 ID           |
 | created_date | TIMESTAMP     | DEFAULT CURRENT_TIMESTAMP | 생성일시           |
 
+
+#### cart_item 테이블
 | 컬럼명       | 데이터 타입    | 제약 조건            | 설명                  |
 |--------------|---------------|--------------------|-----------------------|
 | cart_item_id | BIGINT        | PK, AUTO_INCREMENT | 장바구니 항목 고유 ID |
@@ -131,9 +93,8 @@ order_item  |  order_item_id  |  BIGINT  |  PK, AUTO_INCREMENT    |  주문 상�
 | item_id      | BIGINT        | FK(item.item_id)   | 상품 ID               |
 | count        | INT           | NOT NULL           | 수량                  |
 
-# orders 테이블
-## orders 테이블
-### orders 테이블
+
+#### orders 테이블
 | 컬럼명     | 데이터 타입    | 제약 조건              | 설명               |
 |------------|---------------|----------------------|--------------------|
 | order_id   | BIGINT        | PK, AUTO_INCREMENT   | 주문 고유 ID       |
@@ -141,6 +102,8 @@ order_item  |  order_item_id  |  BIGINT  |  PK, AUTO_INCREMENT    |  주문 상�
 | order_date | TIMESTAMP     | DEFAULT CURRENT_TIMESTAMP | 주문일시       |
 | status     | VARCHAR(50)   | NOT NULL             | 주문 상태          |
 
+
+#### order_item 테이블
 | 컬럼명      | 데이터 타입    | 제약 조건            | 설명                  |
 |-------------|---------------|--------------------|-----------------------|
 | order_item_id | BIGINT        | PK, AUTO_INCREMENT | 주문 상세 항목 고유 ID |
@@ -151,12 +114,45 @@ order_item  |  order_item_id  |  BIGINT  |  PK, AUTO_INCREMENT    |  주문 상�
   
 
 #### API 설계
+HTTP Method  |  Endpoint                   |  예상 역할          
+-------------+-----------------------------+-----------------
+POST         |  /members/signup            |  회원가입           
+POST         |  /members/login             |  로그인            
+POST         |  /members/logout            |  로그아웃           
+GET          |  /members/me                |  현재 로그인 회원 정보 조회
+GET          |  /items                     |  전체 상품 목록 조회    
+GET          |  /items/{id}                |  특정 상품 상세 조회    
+POST         |  /items                     |  상품 등록 (관리자용)   
+PUT          |  /items/{id}                |  상품 수정 (관리자용)   
+DELETE       |  /items/{id}                |  상품 삭제 (관리자용)   
+POST         |  /cart/add                  |  장바구니에 상품 추가    
+PUT          |  /cart/update/{cartItemId}  |  장바구니 수량 변경     
+DELETE       |  /cart/delete/{cartItemId}  |  장바구니 상품 삭제     
+GET          |  /cart                      |  장바구니 전체 목록 조회  
+POST         |  /orders/create             |  주문 생성          
+GET          |  /orders/{orderId}          |  주문 상세 조회       
+GET          |  /orders                    |  주문 내역 전체 조회    
 
 
 #### API 명세서
-
-
-
+Method  |  Endpoint                   |  설명           
+--------+-----------------------------+---------------
+POST    |  /members/signup            |  신규 회원 가입     
+POST    |  /members/login             |  회원 로그인       
+POST    |  /members/logout            |  회원 로그아웃      
+GET     |  /members/me                |  로그인한 회원 정보 조회
+GET     |  /items                     |  상품 전체 리스트 조회 
+GET     |  /items/{id}                |  상품 상세 조회     
+POST    |  /items                     |  상품 추가 (관리자용) 
+PUT     |  /items/{id}                |  상품 수정 (관리자용) 
+DELETE  |  /items/{id}                |  상품 삭제 (관리자용) 
+POST    |  /cart/add                  |  장바구니 상품 추가   
+PUT     |  /cart/update/{cartItemId}  |  장바구니 수량 변경   
+DELETE  |  /cart/delete/{cartItemId}  |  장바구니 상품 삭제   
+GET     |  /cart                      |  장바구니 목록 조회   
+POST    |  /orders/create             |  주문 생성        
+GET     |  /orders/{orderId}          |  주문 상세 조회     
+GET     |  /orders                    |  주문 내역 조회     
 
 ---
 
