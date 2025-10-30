@@ -20,9 +20,13 @@
 - Java 웹 프로젝트에서 프론트엔드와 백엔드 통신 구현 경험을 원하는 개발자
 
 
-
-
 ### 담당 업무  
+
+- Spring MVC 컨트롤러 및 서비스 개발
+- JPA 리포지토리 및 쿼리 작성
+- Thymeleaf 템플릿과 JavaScript(Fetch API)를 활용한 동적 UI 구현
+- Spring Security 적용 및 CSRF 보안 설정
+- 프로젝트 빌드, 배포, 디버깅 작업
 
 
 ---
