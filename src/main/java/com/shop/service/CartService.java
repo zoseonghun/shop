@@ -116,7 +116,7 @@ public class CartService {
         List<OrderDto> orderDtoList = new ArrayList<>();
         // 장바구니 페이지에서 전달받은 주문 상품 번호를 이용하여 주문 로직으로 전달할 orderDto 객체를 만듬
         for (CartOrderDto cartOrderDto : cartOrderDtoList) {
-            CartItem cartItem = cartItemRepository.findById(cartOrderDto.getCartItemid()).orElseThrow(EntityNotFoundException::new);
+            CartItem cartItem = cartItemRepository.findById(cartOrderDto.getCartItemId()).orElseThrow(EntityNotFoundException::new);
 
             OrderDto orderDto = new OrderDto();
             orderDto.setItemId(cartItem.getItem().getId());
@@ -129,7 +129,7 @@ public class CartService {
 
         // 주문한 상품들을 장바구니에서 제거
         for (CartOrderDto cartOrderDto : cartOrderDtoList) {
-            CartItem cartItem = cartItemRepository.findById(cartOrderDto.getCartItemid()).orElseThrow(EntityNotFoundException::new);
+            CartItem cartItem = cartItemRepository.findById(cartOrderDto.getCartItemId()).orElseThrow(EntityNotFoundException::new);
             cartItemRepository.delete(cartItem);
         }
 

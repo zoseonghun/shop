@@ -105,12 +105,12 @@ public class CartController {
 
         // 주문할 상품을 선택하지 않았는지 체크
         if (cartOrderDtoList == null || cartOrderDtoList.size() == 0) {
-            return new ResponseEntity<String>("주문할 상품을 선택해주세요",   HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>("주문할 상품을 선택해주세요",   HttpStatus.FORBIDDEN);
         }
 
         // 주문 권한을 체크
         for (CartOrderDto cartOrder : cartOrderDtoList) {
-            if (!cartService.validateCartItem(cartOrder.getCartItemid(), principal.getName())) {
+            if (!cartService.validateCartItem(cartOrder.getCartItemId(), principal.getName())) {
                 return new ResponseEntity<String>("주문 권한이 없습니다.", HttpStatus.FORBIDDEN);
             }
         }
