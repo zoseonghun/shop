@@ -2,13 +2,12 @@ package com.shop.service;
 
 import com.shop.constant.ItemSellStatus;
 import com.shop.entity.CartItem;
-import com.shop.entity.CartItemDto;
+import com.shop.dto.CartItemDto;
 import com.shop.entity.Item;
 import com.shop.entity.Member;
 import com.shop.repository.CartItemRepository;
 import com.shop.repository.ItemRepository;
 import com.shop.repository.MemberRepository;
-import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

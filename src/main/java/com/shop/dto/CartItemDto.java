@@ -1,4 +1,4 @@
-package com.shop.entity;
+package com.shop.dto;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;

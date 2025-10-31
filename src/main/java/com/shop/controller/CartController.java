@@ -2,7 +2,7 @@ package com.shop.controller;
 
 import com.shop.dto.CartDetailDto;
 import com.shop.dto.CartOrderDto;
-import com.shop.entity.CartItemDto;
+import com.shop.dto.CartItemDto;
 import com.shop.service.CartService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

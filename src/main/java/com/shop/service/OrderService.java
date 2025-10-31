@@ -33,6 +33,7 @@ public class OrderService {
     private final ItemImgRepository itemImgRepository;
 
     public Long order(OrderDto orderDto, String email) {
+
         // 주문을 상품 조회
         Item item = itemRepository.findById(orderDto.getItemId())
                 .orElseThrow(EntityExistsException::new);
@@ -74,7 +75,9 @@ public class OrderService {
                 OrderItemDto orderItemDto = new OrderItemDto(orderItem, itemImg.getImgUrl());
                 orderHistDto.addOrderItemDto(orderItemDto);
             }
+
             orderHistDtos.add(orderHistDto);
+
         }
 
         // 페이지 구현 객체를 생성하여 반환
