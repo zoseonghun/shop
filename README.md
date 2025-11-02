@@ -181,34 +181,49 @@
 <img width="3166" height="854" alt="Image" src="https://github.com/user-attachments/assets/f8df7430-a244-4f62-ac65-ce9fe8212282" />
 
 #### 로그인
+<img width="3162" height="502" alt="Image" src="https://github.com/user-attachments/assets/833ce418-0165-4b4a-8517-ff7add344ea3" />
 
 #### 상품 등록
+<img width="3192" height="1458" alt="Image" src="https://github.com/user-attachments/assets/cf44dc42-efb2-480b-93c5-a9389ad39905" />
 
 #### 상품 등록 예시
+<img width="1262" height="1444" alt="Image" src="https://github.com/user-attachments/assets/a0f6b676-765b-41e9-b83f-c775b6f1c6d2" />
 
 #### 상품 등록 화면
+<img width="1086" height="1218" alt="Image" src="https://github.com/user-attachments/assets/96b61fa4-4b1e-47dd-8c13-5d3718dd4eb0" />
 
 #### 상품 등록 후 메인화면
+<img width="3332" height="1916" alt="Image" src="https://github.com/user-attachments/assets/3537f712-2588-4fde-9ffd-6dcaef604108" />
 
 #### 상품 상세 화면
+<img width="2110" height="1458" alt="Image" src="https://github.com/user-attachments/assets/1912eccc-8f65-49e0-90c9-a2087fcd0cf0" />
 
 #### 장바구니 버튼 클릭 시 알림 팝업
+<img width="848" height="170" alt="Image" src="https://github.com/user-attachments/assets/66d06f5c-603e-4cc2-843a-babf052d55e3" />
 
-#### 장바구니 화면
+#### 장바구니 목록
+<img width="2178" height="2014" alt="Image" src="https://github.com/user-attachments/assets/cd8f06c4-2529-414f-a422-33cae894d6f1" />
 
 #### 장바구니 목록 예시1) → 원하는 상품만 체크 선택 
+<img width="2170" height="2012" alt="Image" src="https://github.com/user-attachments/assets/8d4ae7e0-85be-4dd3-8255-ef2b2587eb95" />
 
 #### 장바구니 목록 예시2) → 원하는 상품만 체크 선택 
+<img width="1522" height="2028" alt="Image" src="https://github.com/user-attachments/assets/28d69aa5-2ccc-4c05-a436-5a34eac75c92" />
 
 #### 주문하기 버튼 클릭 시 알림 팝업
+<img width="840" height="160" alt="Image" src="https://github.com/user-attachments/assets/c9cb5e68-070b-437c-97eb-081776ec51d5" />
 
 #### 구매 이력
+![Image](https://github.com/user-attachments/assets/702b48ca-e5cf-4134-b644-8accdecc922a)
 
 #### 주문 취소 버튼 클릭 시 알림 팝업
+<img width="834" height="156" alt="Image" src="https://github.com/user-attachments/assets/88942063-1443-4f3c-af2a-26a45a45d51e" />
 
 #### 주문 취소 버튼 클릭 후 구매이력 창에서 (취소 완료) 표시 변경
+![Image](https://github.com/user-attachments/assets/7bb66529-5e16-4623-bb02-20f1d0ca7b7d)
 
 #### 상품 관리
+<img width="2054" height="770" alt="Image" src="https://github.com/user-attachments/assets/8e16f5bc-1010-4228-962b-ce11229ff307" />
 
 
 
