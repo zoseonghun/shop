@@ -178,6 +178,7 @@
 ## 5. 화면
 
 #### 회원가입
+<img width="3166" height="854" alt="Image" src="https://github.com/user-attachments/assets/f8df7430-a244-4f62-ac65-ce9fe8212282" />
 
 #### 로그인
 
