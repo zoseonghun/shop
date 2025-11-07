@@ -13,14 +13,6 @@
 쇼핑몰과 같은 전자상거래 웹 애플리케이션에서 회원 관리, 상품 관리, 장바구니 기능, 주문 처리 등은 필수적입니다.
 본 프로젝트는 Spring Framework 기반으로 쇼핑몰 전반의 주요 기능을 구현하여 실무 경험을 쌓기 위한 학습용 및 포트폴리오용 프로젝트로 시작되었습니다.
 
-
-### 서비스 대상  
-
-- 소규모 웹 애플리케이션 운영자 및 개발자
-- Spring MVC 및 JPA 기반 백엔드 기술 학습자
-- Java 웹 프로젝트에서 프론트엔드와 백엔드 통신 구현 경험을 원하는 개발자
-
-
 ### 담당 업무  
 
 - Spring MVC 컨트롤러 및 서비스 개발
@@ -40,13 +32,13 @@
 - Spring Data JPA (Hibernate)
 - MariaDB
 - Thymeleaf, HTML, CSS, JavaScript (Fetch API)
-- Apache Tomcat 9
 - IntelliJ IDEA Ultimate
   
 
 ### 시스템 아키텍처
 
 #### 시퀀스 다이어그램  
+- (다이어그램 추가 예정)
 - 클라이언트 → 서버: 상품 조회, 장바구니 담기, 주문 요청 (REST API)
 - 서버 → DB: JPA를 통한 CRUD 실행
 - 서버 → 클라이언트: JSON 응답 및 Thymeleaf 렌더링 결과 전송
